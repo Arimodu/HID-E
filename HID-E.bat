@@ -2,8 +2,8 @@
 @echo off & setlocal
 
 echo ------------------------------------------------
+echo HID-E
 echo Made by Arimodu
-echo Contributors: Arimodu
 echo License: MIT
 echo ------------------------------------------------
 
