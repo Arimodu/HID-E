@@ -50,7 +50,7 @@ namespace HID_E
             return o;
         }
 
-        //This is a replacement for Cursor.Position in WinForms
+        //This is a replacement for Cursor.Position
         [DllImport("user32.dll")]
         static extern bool SetCursorPos(int x, int y);
 
@@ -77,6 +77,7 @@ namespace HID_E
 
         static void Main(string[] args)
         {
+            Console.SetWindowSize(55, 30);
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("HID - E");
             Console.WriteLine("Made by Arimodu");
@@ -88,13 +89,17 @@ namespace HID_E
 
             Console.WriteLine("Performing setup...");
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
 
             Console.WriteLine("Please click SET input field in Konsole...");
 
-            while (!IsMouseButtonPressed(MouseButton.Left))
+            while (true)
             {
-                //Do nothing, ugly but works
+                if (IsMouseButtonPressed(MouseButton.Left))
+                {
+                    Thread.Sleep(50);
+                    if (IsMouseButtonPressed(MouseButton.Left)) break;
+                }
             }
             
             POINT SETInputPos = GetMousePosition();
@@ -104,9 +109,13 @@ namespace HID_E
 
             Console.WriteLine("Please click this application title bar...");
 
-            while (!IsMouseButtonPressed(MouseButton.Left))
+            while (true)
             {
-                //Do nothing, ugly but works
+                if (IsMouseButtonPressed(MouseButton.Left))
+                {
+                    Thread.Sleep(50);
+                    if (IsMouseButtonPressed(MouseButton.Left)) break;
+                }
             }
 
             POINT AppTitleBar = GetMousePosition();
@@ -156,6 +165,8 @@ namespace HID_E
 
                 if (key == ConsoleKey.N)
                 {
+                    WriteColored("Done", ConsoleColor.Green);
+                    Thread.Sleep(3000);
                     ClearAndReplaceHeader();
                     LeftMouseClick(AppTitleBar.x, AppTitleBar.y);
                     continue;
@@ -172,6 +183,8 @@ namespace HID_E
 
                 if (key == ConsoleKey.O)
                 {
+                    WriteColored("Done", ConsoleColor.Green);
+                    Thread.Sleep(3000);
                     ClearAndReplaceHeader();
                     LeftMouseClick(AppTitleBar.x, AppTitleBar.y);
                     continue;
